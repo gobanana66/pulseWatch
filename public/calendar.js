@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function() {
       maxDate: new Date()
     });
   });
-
+  getUserHeartRateData();
   window.intradayChart = new Chart(ctx, chartConfig);
 });
 
@@ -123,7 +123,7 @@ function handleSubmit() {
       document.getElementById("endTime").className = "form-control is-invalid";
     }
   } else {
-    getUserHeartRateData(date);
+    getUserHeartRateData();
   }
 }
 
@@ -138,6 +138,7 @@ function formatDate(day) {
 }
 
 function getUserHeartRateData(date) {
+  console.log(access_token);
   var header = new Headers();
   header.append("Authorization", "Bearer " + access_token);
   var init = {
