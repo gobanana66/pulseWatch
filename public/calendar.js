@@ -152,18 +152,6 @@ function getUserHeartRateData(date) {
   .then((myJson) => {
     console.log(myJson);
   });
-
-  fetch("createFitbitRequest(), init")
-    .then(function(data) {
-      return heartRateData.json();
-    })
-    .then(function(heartRateData) {
-      userHeartRateData = heartRateData["activities-heart-intraday"].dataset;
-
-      exportCSVFile(userHeartRateData);
-
-      createInterdayGraph(userHeartRateData);
-    });
 }
 
 function createFitbitRequest() {
