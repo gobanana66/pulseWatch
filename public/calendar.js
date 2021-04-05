@@ -152,16 +152,13 @@ function getUserHeartRateData(date) {
   .then((activityData) => {
     console.log(activityData);
     userActivityData = activityData["activities"];
+    console.log(userActivityData);
     exportCSVFile(userActivityData);
     createInterdayGraph(userActivityData);
   });
 }
 
-function createFitbitRequest() {
-  return (
-    "https://api.fitbit.com/1/user/-/activities/list.json?beforeDate=&afterDate=2021-01-01&sort=asc&offset=0&limit=50"
-  );
-}
+
 
 var customTooltips = function(tooltip) {
   $(this._chart.canvas).css("cursor", "pointer");
