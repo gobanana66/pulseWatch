@@ -155,7 +155,6 @@ function getUserHeartRateData(date) {
 
   fetch("createFitbitRequest(), init")
     .then(function(data) {
-      console.log(data);
       return heartRateData.json();
     })
     .then(function(heartRateData) {
