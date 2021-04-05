@@ -145,9 +145,9 @@ function getUserHeartRateData(date) {
     headers: header
   };
 
-  fetch(createFitbitRequest(date), init)
-    .then(function(heartRateData) {
-      console.log(heartRateData);
+  fetch(createFitbitRequest(), init)
+    .then(function(data) {
+      console.log(data);
       return heartRateData.json();
     })
     .then(function(heartRateData) {
@@ -159,13 +159,7 @@ function getUserHeartRateData(date) {
     });
 }
 
-function createFitbitRequest(day) {
-  if ($("#perMinute").is(":checked")) {
-    detailLevel = "1min";
-  } else {
-    detailLevel = "1sec";
-  }
-
+function createFitbitRequest() {
   return (
     "https://api.fitbit.com/1/user/-/activities/list.json?beforeDate=&afterDate=2021-01-01&sort=asc&offset=0&limit=50"
   );
