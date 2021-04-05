@@ -9,13 +9,13 @@ var detailLevel;
 var activity;
 
 var ctx = document.getElementById("calendarChart").getContext("2d");
-chart = {
-  const svg = d3.create("svg")
+var chart = {
+  var svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height * years.length])
       .attr("font-family", "sans-serif")
       .attr("font-size", 10);
 
-  const year = svg.selectAll("g")
+  var year = svg.selectAll("g")
     .data(years)
     .join("g")
       .attr("transform", (d, i) => `translate(40.5,${height * i + cellSize * 1.5})`);
@@ -53,7 +53,7 @@ chart = {
 ${formatValue(d.value)}${d.close === undefined ? "" : `
 ${formatClose(d.close)}`}`);
 
-  const month = year.append("g")
+  var month = year.append("g")
     .selectAll("g")
     .data(([, values]) => d3.utcMonths(d3.utcMonth(values[0].date), values[values.length - 1].date))
     .join("g");
