@@ -224,7 +224,7 @@ function createInterdayGraph(heartRateData) {
   var yValues = [];
 
   heartRateData.forEach(function(data, idx, arr) {
-    console.log(data.startTime);
+    console.log(moment(data.startTime, "YYYY-MM-DDTHH:mm:ss").format("LL"));
     console.log(data.activityName);
     xValues.push(moment(data.startTime, "YYYY-MM-DDTHH:mm:ss").format("LL"));
     yValues.push(data.activityName);
