@@ -113,7 +113,6 @@ function formatDate(day) {
 }
 
 function getUserHeartRateData(date) {
-  console.log(access_token);
   var header = new Headers();
   header.append("Authorization", "Bearer " + access_token);
   var init = {
@@ -125,7 +124,6 @@ function getUserHeartRateData(date) {
     return response.json();
   })
   .then((activityData) => {
-    console.log(activityData);
     userActivityData = activityData["activities"];
     console.log(userActivityData);
     createInterdayGraph(userActivityData);
@@ -168,8 +166,6 @@ function createInterdayGraph(heartRateData) {
   var yValues = [];
 
   heartRateData.forEach(function(data, idx, arr) {
-    console.log(moment(data.startTime, "YYYY-MM-DDTHH:mm:ss").format("LL"));
-    console.log(data.activityName);
     xValues.push(moment(data.startTime, "YYYY-MM-DDTHH:mm:ss").format("LL"));
     yValues.push(data.activityName);
   });
