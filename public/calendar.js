@@ -9,7 +9,8 @@ var detailLevel;
 var activity;
 
 var ctx = document.getElementById("calendarChart").getContext("2d");
-   const svg = d3.create("svg")
+var chart = {
+  const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height * years.length])
       .attr("font-family", "sans-serif")
       .attr("font-size", 10);
@@ -69,7 +70,7 @@ ${formatClose(d.close)}`}`);
       .text(formatMonth);
 
   return svg.node();
-  
+}
 var chartConfig = {
   type: "bar",
   data: {
