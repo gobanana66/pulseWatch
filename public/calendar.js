@@ -8,7 +8,7 @@ var timeRange;
 var detailLevel;
 var activity;
 
-var ctx = document.getElementById("intradayChart").getContext("2d");
+var ctx = document.getElementById("calendarChart").getContext("2d");
 var chartConfig = {
   type: "bar",
   data: {
