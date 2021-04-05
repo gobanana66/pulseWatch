@@ -145,7 +145,7 @@ function getUserHeartRateData(date) {
     headers: header
   };
 
-  fetch('https://api.fitbit.com/1/user/-/activities/list.json?beforeDate=&afterDate=2021-01-01&sort=asc&offset=0&limit=50')
+  fetch('https://api.fitbit.com/1/user/-/activities/list.json?beforeDate=&afterDate=2021-01-01&sort=asc&offset=0&limit=50', init)
   .then((response) => {
     return response.json();
   })
