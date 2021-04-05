@@ -149,7 +149,7 @@ function getUserHeartRateData(date) {
   .then((response) => {
     return response.json();
   })
-  .then((myJson) => {
+  .then((activityData) => {
     console.log(activityData);
     userActivityData = activityData["activities"];
     exportCSVFile(userActivityData);
