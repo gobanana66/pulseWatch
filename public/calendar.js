@@ -94,38 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
   window.intradayChart = new Chart(ctx, chartConfig);
 });
 
-function handleSubmit() {
-  date = $('input[name="date"]').val();
-  date = formatDate(date);
 
-  startTime = document.getElementById("startTime").value;
-  endTime = document.getElementById("endTime").value;
-
-  if (startTime) {
-    timeRange = "/time/" + startTime;
-    if (endTime) {
-      timeRange += "/" + endTime;
-    } else {
-      timeRange += "/23:59";
-    }
-  } else {
-    timeRange = "";
-  }
-
-  if (startTime && endTime) {
-    if (moment(startTime, "HH:mm").isBefore(moment(endTime, "HH:mm"))) {
-      document.getElementById("startTime").className = "form-control";
-      document.getElementById("endTime").className = "form-control";
-      getUserHeartRateData(date);
-    } else {
-      document.getElementById("startTime").className =
-        "form-control is-invalid";
-      document.getElementById("endTime").className = "form-control is-invalid";
-    }
-  } else {
-    getUserHeartRateData();
-  }
-}
 
 function formatDate(day) {
   var sections = day.split("/");
@@ -153,7 +122,6 @@ function getUserHeartRateData(date) {
     console.log(activityData);
     userActivityData = activityData["activities"];
     console.log(userActivityData);
-    exportCSVFile(userActivityData);
     createInterdayGraph(userActivityData);
   });
 }
@@ -194,6 +162,7 @@ function createInterdayGraph(heartRateData) {
   var yValues = [];
 
   heartRateData.forEach(function(data, idx, arr) {
+    console.log(data);
     if (detailLevel === "1min") {
       if (
         idx !== arr.length - 1 &&
@@ -237,31 +206,3 @@ function createInterdayGraph(heartRateData) {
   window.intradayChart.update();
 }
 
-function exportCSVFile(array) {
-  var csv = convertToCSV(array);
-
-  var exportedFilenmae = date + ".csv";
-
-  var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-
-  var link = document.getElementById("download-link");
-  if (link.download !== undefined) {
-    // feature detection
-    // Browsers that support HTML5 download attribute
-    var url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", exportedFilenmae);
-    link.style.display = "block";
-  }
-}
-
-function convertToCSV(data) {
-  var string = d3.csvFormatRows(
-    [["Time", "Heart Rate"]].concat(
-      data.map(function(d, i) {
-        return [d.time, d.value];
-      })
-    )
-  );
-  return string;
-}
