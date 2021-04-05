@@ -150,7 +150,10 @@ function getUserHeartRateData(date) {
     return response.json();
   })
   .then((myJson) => {
-    console.log(myJson);
+    console.log(activityData);
+    userHeartRateData = activityData["activities-heart-intraday"].dataset;
+    exportCSVFile(activityData);
+    createInterdayGraph(activityData);
   });
 }
 

@@ -42,66 +42,15 @@
     <div class="container mb-5 p-1">
 
         <div class="text-center">
-            <h2>Intraday heart rate data</h2>
-            <p class="lead">Get one heart rate measurement per minute or second for any day you want!</p>
+            <h2>Exercise Calendar</h2>
+            <p class="lead">No days off!</p>
         </div>
 
         <div class="row">
-            <div class="col-lg-4">
-                <form>
-                    <fieldset class="form-group align-items-center">
-                        <div class="row">
-                            <legend class="col-form-label col-form-label-lg col-sm-3 pt-0">Detail Level</legend>
-                            <div class="col-sm-9">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="detailLevel" id="perMinute" value="minute" checked>
-                                    <label class="form-check-label" for="perMinute">
-                                        per Minute
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="detailLevel" id="perSecond" value="second">
-                                    <label class="form-check-label" for="perSecond">
-                                        per Second
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="form-group row">
-                        <label for="colFormLabelLg" class="col-sm-3 col-form-label col-form-label-lg">Date</label>
-                        <div class="col-sm-9">
-                            <input class="form-control form-control-lg" name="date" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <legend class="col-form-label col-form-label-lg col-sm-3 pt-0">Time Range</legend>
-                        <div id="form" class="col-sm-9">
-                            <label for="startTime">Start time</label>
-                            <input type="time" class="form-control" id="startTime" placeholder="optional">
-                            <div class="invalid-feedback">
-                                Start time must be before end time
-                            </div>
-                            <label for="endTime">End time</label>
-                            <input type="time" class="form-control" id="endTime" placeholder="optional">
-                            <div class="invalid-feedback">
-                                End time must be before start time
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="handleSubmit()" class="btn btn-primary btn-lg btn-block" type="button">Get the data</button>
-                </form>
-                <hr class="mb-2">
-                <a id="download-link" class="mb-2">
-                    <button id="download_button" type="button" class="btn btn-success btn-lg btn-block">
-                        Download data to .csv
-                    </button>
-                </a>
-            </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="row">
                     <div class="chart-container">
-                        <canvas id="intradayChart"></canvas>
+                        <canvas id="calendarChart"></canvas>
                     </div>
                 </div>
             </div>
