@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Pulse Watch -- Intraday</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- Date Range Picker CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="intraday.css" rel="stylesheet">
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105987818-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-105987818-2');
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container mb-5 p-1">
+
+        <div class="text-center">
+            <h2>Intraday heart rate data</h2>
+            <p class="lead">Get one heart rate measurement per minute or second for any day you want!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <form>
+                    <fieldset class="form-group align-items-center">
+                        <div class="row">
+                            <legend class="col-form-label col-form-label-lg col-sm-3 pt-0">Detail Level</legend>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="detailLevel" id="perMinute" value="minute" checked>
+                                    <label class="form-check-label" for="perMinute">
+                                        per Minute
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="detailLevel" id="perSecond" value="second">
+                                    <label class="form-check-label" for="perSecond">
+                                        per Second
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group row">
+                        <label for="colFormLabelLg" class="col-sm-3 col-form-label col-form-label-lg">Date</label>
+                        <div class="col-sm-9">
+                            <input class="form-control form-control-lg" name="date" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <legend class="col-form-label col-form-label-lg col-sm-3 pt-0">Time Range</legend>
+                        <div id="form" class="col-sm-9">
+                            <label for="startTime">Start time</label>
+                            <input type="time" class="form-control" id="startTime" placeholder="optional">
+                            <div class="invalid-feedback">
+                                Start time must be before end time
+                            </div>
+                            <label for="endTime">End time</label>
+                            <input type="time" class="form-control" id="endTime" placeholder="optional">
+                            <div class="invalid-feedback">
+                                End time must be before start time
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="handleSubmit()" class="btn btn-primary btn-lg btn-block" type="button">Get the data</button>
+                </form>
+                <hr class="mb-2">
+                <a id="download-link" class="mb-2">
+                    <button id="download_button" type="button" class="btn btn-success btn-lg btn-block">
+                        Download data to .csv
+                    </button>
+                </a>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="chart-container">
+                        <canvas id="intradayChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark mt-6">
+        <a class="navbar-brand" href="#">Pulse Watch</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./dashboard.html">Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./interday.html">Interday
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="">Intraday</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+            </ul>
+            <div class="author-text mt-2 mt-md-0">
+                <span>Made with love by
+                    <a href="https://neilricci.github.io/">Neil</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+
+    <!-- Moment.js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+    <!-- Date Range Picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- d3 -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+    <script src="calendar.js"></script>
+
+
+
+
+</body>
+
+</html>
