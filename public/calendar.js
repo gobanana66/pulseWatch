@@ -8,8 +8,6 @@ var timeRange;
 var detailLevel;
 var activity;
 
-var calendar = new CalHeatMap();
-calendar.init({});
 var ctx = document.getElementById("calendarChart").getContext("2d");
 var chartConfig = {
   type: "bar",
