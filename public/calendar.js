@@ -168,7 +168,7 @@ function createFitbitRequest(day) {
   return (
     "https://api.fitbit.com/1/user/" +
     user_id +
-    "/activities/list.jsonbeforeDate=&afterDate={{startDate}}&sort=asc&offset=0&limit=50"
+    "/activities/list.json?beforeDate=&afterDate={{startDate}}&sort=asc&offset=0&limit=50"
   );
 }
 
